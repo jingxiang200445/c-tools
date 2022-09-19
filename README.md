@@ -1,3 +1,3 @@
 # c-tools
 
-Some C libraries 
+C Language Libraries 
