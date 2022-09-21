@@ -67,11 +67,11 @@ void j_ArrayList_free(j_ArrayList* j_ArrayList){
 
 void j_ArrayList_info(j_ArrayList* j_ArrayList){
 
-    printf("*****j_ArrayList*****\n"
+    printf("*****ArrayList*****\n"
            "length   = %d\n"
            "capacity = %d\n"
            "unit     = %d\n"
            "byte used= %d\n"
-           "*************\n", j_ArrayList->length, j_ArrayList->capacity, j_ArrayList->unit_size, j_ArrayList->unit_size* j_ArrayList->length
+           "*******************\n", j_ArrayList->length, j_ArrayList->capacity, j_ArrayList->unit_size, j_ArrayList->unit_size* j_ArrayList->length
            );
 }
