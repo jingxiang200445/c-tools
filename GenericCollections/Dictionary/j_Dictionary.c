@@ -16,7 +16,7 @@ j_Dictionary * j_Dictionary_new(unsigned char value_size, unsigned int capacity)
     dict->value_size = value_size;
     dict->keys = malloc(capacity* sizeof(long));
     dict->values = malloc(capacity* sizeof(value_size));
-    dict->extend_space = 5;
+    dict->extend_space = J_DICT_INIT_EXTEND_SPACE;
     return dict;
 }
 void j_Dictionary_put(j_Dictionary* self, long key, void* value){
