@@ -16,24 +16,21 @@ j_ArrayList * j_ArrayList_new(unsigned int capacity, unsigned char size){
     return arr;
 }
 
-void j_ArrayList_add(j_ArrayList* j_ArrayList, void* datum){
+void j_ArrayList_add(j_ArrayList* arr, void* datum){
     printf("p added: %p\n", datum);
-    unsigned char unit_size = j_ArrayList->unit_size;
-    if (j_ArrayList->capacity==j_ArrayList->length){
+    unsigned char unit_size = arr->unit_size;
+    if (arr->capacity==arr->length){
+        arr->capacity+= arr->extend_space;
 
-        void* new_data_mem = malloc(unit_size * (j_ArrayList->capacity + j_ArrayList-> extend_space));
-        for (int i = 0; i < unit_size*j_ArrayList->length; ++i) {
-            ((char*)new_data_mem)[i] = ((char*)j_ArrayList->data_mem)[i];
-        }
-        free(j_ArrayList->data_mem);
-        j_ArrayList->capacity+= j_ArrayList->extend_space;
-        j_ArrayList->data_mem = new_data_mem;
+        void* new_data_mem = realloc(arr, arr->capacity);
+
+        arr->data_mem = new_data_mem;
     }
 
     for (int i = 0; i < unit_size; ++i) {
-        ((char*)j_ArrayList->data_mem)[(j_ArrayList->length*unit_size)+i] = ((char*)datum)[i];
+        ((char*)arr->data_mem)[(arr->length*unit_size)+i] = ((char*)datum)[i];
     }
-    ++ j_ArrayList->length;
+    ++ arr->length;
 }
 void j_ArrayList_addAll(j_ArrayList* j_ArrayList, int len, ... ){
     va_list va;
