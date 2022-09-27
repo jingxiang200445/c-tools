@@ -22,7 +22,7 @@ j_Dictionary * j_Dictionary_new(unsigned char value_size, unsigned int capacity)
 void j_Dictionary_put(j_Dictionary* self, long key, void* value){
     if (self->capacity==self->length){
         self->capacity+= self->extend_space;
-        void * n_keys = realloc(self->keys, sizeof (long )* self->capacity);
+        long * n_keys = (long *)realloc(self->keys, sizeof (long )* self->capacity);
         void * n_values = realloc(self->values, self->value_size* self->capacity);
         self->keys = n_keys;
         self->values = n_values;

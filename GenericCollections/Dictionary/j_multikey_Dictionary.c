@@ -32,7 +32,7 @@ void j_multikey_Dictionary_put(j_multikey_Dictionary* self, void* value,int key_
 
     }
 
-    long keys[key_len];
+    long *keys = (long *)malloc(key_len * sizeof(long ));
     va_list vaList;
     va_start(vaList, key_len);
     for (int i = 0; i < key_len; ++i) {
@@ -57,6 +57,11 @@ void* j_multikey_Dictionary_get(j_multikey_Dictionary* self, long key){
     return NULL;
 }
 void j_multikey_Dictionary_delete(j_multikey_Dictionary* self){
+    for (int i = 0; i < self->length; ++i) {
+        free(self->keys[i]);
+    }
+    free(self->keys);
+    free(self->values);
     free(self);
     self = NULL;
 }
